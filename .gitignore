@@ -1,0 +1,9 @@
+/bin/
+/out/
+/production/
+
+bin/
+out/
+production/
+
+*.class
