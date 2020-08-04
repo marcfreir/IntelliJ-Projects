@@ -45,8 +45,8 @@ public class TileMap
     public TileMap(int tileSize)
     {
         this.tileSize = tileSize;
-        numRowsToDraw = GamePanel.HEIGHT / (tileSize + 2);
-        numColsToDraw = GamePanel.WIDTH / (tileSize + 2);
+        numRowsToDraw = GamePanel.HEIGHT / tileSize + 2;
+        numColsToDraw = GamePanel.WIDTH / tileSize + 2;
         tween = 0.07;
     }
 
@@ -81,15 +81,130 @@ public class TileMap
             InputStream input = getClass().getResourceAsStream(set);
             BufferedReader buffReader = new BufferedReader(new InputStreamReader(input));
 
-            numRows = Integer.parseInt(buffReader.readLine());
             numCols = Integer.parseInt(buffReader.readLine());
+            numRows = Integer.parseInt(buffReader.readLine());
             map = new int[numRows][numCols];
             mapWidth = numCols * tileSize;
             mapHeight = numRows * tileSize;
+
+            String delimiters = "\\s+";
+
+            for (int row = 0; row < numRows; row++)
+            {
+                String line = buffReader.readLine();
+                String[] tokens = line.split(delimiters);
+
+                for (int col = 0; col < numCols; col++)
+                {
+                    map[row][col] = Integer.parseInt(tokens[col]);
+                }
+            }
         }
         catch(Exception exception)
         {
             exception.printStackTrace();
+        }
+    }
+
+    //Getters
+    public int getTileSize()
+    {
+        return tileSize;
+    }
+
+    public int getAxisX()
+    {
+        return (int)axisX;
+    }
+
+    public int getAxisY()
+    {
+        return (int)axisY;
+    }
+
+    public int getMapWidth()
+    {
+        return mapWidth;
+    }
+
+    public int getMapHeight()
+    {
+        return mapHeight;
+    }
+
+    public int getTileType(int row, int col)
+    {
+        int rowCol = map[row][col];
+        int rows = rowCol / numTilesAcross;
+        int cols = rowCol %  numTilesAcross;
+
+        return tiles[rows][cols].getTileType();
+    }
+
+    //Setters
+    public void setPosition(double axisX, double axisY)
+    {
+        this.axisX += (axisX - this.axisX) * tween;
+        this.axisY += (axisY - this.axisY) * tween;
+
+        fixBounds();
+
+        //Where start drawing
+        colOffSet = (int)-this.axisX / tileSize;
+        rowOffSet = (int)-this.axisY / tileSize;
+    }
+
+    //Helper function
+    public void fixBounds()
+    {
+        if (axisX < boundXMin)
+        {
+            axisX = boundXMin;
+        }
+
+        if (axisY < boundYMin)
+        {
+            axisY = boundYMin;
+        }
+
+        if (axisX > boundXMax)
+        {
+            axisX = boundXMax;
+        }
+
+        if (axisY > boundYMax)
+        {
+            axisY = boundYMax;
+        }
+    }
+
+    public void drawTileMap(Graphics2D tileMapGraphics)
+    {
+        for (int row = rowOffSet; row < rowOffSet + numRowsToDraw; row++)
+        {
+            if (row >= numRows)
+            {
+                break;
+            }
+
+            for (int col = colOffSet; col < colOffSet + numColsToDraw; col++)
+            {
+                if (col >= numCols)
+                {
+                    break;
+                }
+
+                if (map[row][col] == 0)
+                {
+                    continue;
+                }
+
+                int rowCol = map[row][col];
+                int rows = rowCol / numTilesAcross;
+                int cols = rowCol % numTilesAcross;
+
+                tileMapGraphics.drawImage(tiles[rows][cols].getTileImage(), (int)axisX + col * tileSize, (int)axisY + row * tileSize, null);
+            }
         }
     }
 }

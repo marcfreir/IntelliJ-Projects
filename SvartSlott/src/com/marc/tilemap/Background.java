@@ -23,7 +23,7 @@ public class Background
         try
         {
             backgroundImage = ImageIO.read(getClass().getResourceAsStream(scale));
-            moveScale = this.moveScale;
+            this.moveScale = moveScale;
         }
         catch (Exception exception)
         {
