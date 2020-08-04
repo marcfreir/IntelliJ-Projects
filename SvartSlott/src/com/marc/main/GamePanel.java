@@ -49,7 +49,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
         }
     }
 
-    private void init()
+    private void initGamePanel()
     {
         image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         gameGraphics = (Graphics2D) image.getGraphics();
@@ -78,7 +78,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
     @Override
     public void run()
     {
-        init();
+        initGamePanel();
 
         long start;
         long elapsed;

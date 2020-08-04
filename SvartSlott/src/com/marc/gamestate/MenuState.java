@@ -35,7 +35,7 @@ public class MenuState extends GameState
     }
 
     @Override
-    public void init()
+    public void initGameState()
     {
 
     }
@@ -79,7 +79,8 @@ public class MenuState extends GameState
     {
         if (currentChoice == 0)
         {
-            //Do something (Start)
+            //(Start)
+            gameStateManager.setGameState(GameStateManager.LEVEL1STATE);
         }
         if (currentChoice == 1)
         {

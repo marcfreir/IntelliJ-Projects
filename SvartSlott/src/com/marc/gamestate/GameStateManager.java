@@ -1,5 +1,6 @@
 package com.marc.gamestate;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class GameStateManager
@@ -17,12 +18,13 @@ public class GameStateManager
 
         currentState = MENUSTATE;
         gameStates.add(new MenuState(this));
+        gameStates.add(new Level1State(this));
     }
 
     public void setGameState(int state)
     {
         currentState = state;
-        gameStates.get(currentState).init();
+        gameStates.get(currentState).initGameState();
     }
 
     public void updateGameState()
@@ -30,7 +32,7 @@ public class GameStateManager
         gameStates.get(currentState).updateGameState();
     }
 
-    public void drawGameState(java.awt.Graphics2D gameStateGraphics)
+    public void drawGameState(Graphics2D gameStateGraphics)
     {
         gameStates.get(currentState).drawGameState(gameStateGraphics);
     }
