@@ -118,7 +118,7 @@ public abstract class MapObject
             if (topLeftCorner || topRightCorner)
             {
                 directionY = 0;
-                tempPositionY = currentRow * tileSize + collisionHeight / 2;
+                tempPositionY = currentRow * tileSize + collisionHeight / 2.0;
             }
             else
             {
@@ -132,7 +132,7 @@ public abstract class MapObject
             {
                 directionY = 0;
                 movementFalling = false;
-                tempPositionY = (currentRow + 1) * tileSize - collisionHeight / 2;
+                tempPositionY = (currentRow + 1) * tileSize - collisionHeight / 2.0;
             }
             else
             {
@@ -147,7 +147,7 @@ public abstract class MapObject
             if (topLeftCorner || bottomLeftCorner)
             {
                 directionX = 0;
-                tempPositionX = currentCol * tileSize + collisionHeight / 2;
+                tempPositionX = currentCol * tileSize + collisionHeight / 2.0;
             }
             else
             {
@@ -160,7 +160,11 @@ public abstract class MapObject
             if (topRightCorner || bottomRightCorner)
             {
                 directionX = 0;
-                tempPositionX = (currentCol + 1) * tileSize - collisionWidth / 2;
+                tempPositionX = (currentCol + 1) * tileSize - collisionWidth / 2.0;
+            }
+            else
+            {
+                tempPositionX += directionX;
             }
         }
 
