@@ -28,7 +28,7 @@ public class Level1State extends GameState
     {
         int tileProportion = 30;
         tileMap = new TileMap(tileProportion);
-        tileMap.loadTiles("/Tilesets/terrainTiles.png");
+        tileMap.loadTiles("/Tilesets/terrainTilesNoGrids.png");
         tileMap.loadMap("/Maps/level1Map.map");
         tileMap.setPosition(0, 0);
         tileMap.setTween(1);
