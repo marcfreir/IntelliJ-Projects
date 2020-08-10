@@ -142,6 +142,11 @@ public class TileMap
     }
 
     //Setters
+    public void setTween(double tween)
+    {
+        this.tween = tween;
+    }
+
     public void setPosition(double axisX, double axisY)
     {
         this.axisX += (axisX - this.axisX) * tween;

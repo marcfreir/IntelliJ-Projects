@@ -147,7 +147,7 @@ public abstract class MapObject
             if (topLeftCorner || bottomLeftCorner)
             {
                 directionX = 0;
-                tempPositionX = currentCol * tileSize + collisionHeight / 2.0;
+                tempPositionX = currentCol * tileSize + collisionWidth / 2.0;
             }
             else
             {
