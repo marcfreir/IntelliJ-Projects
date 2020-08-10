@@ -89,13 +89,13 @@ public class Player extends MapObject
 
                 for (int indexCol = 0; indexCol < playerNumFrames[indexRow]; indexCol++)
                 {
-                    if (indexRow != 6)
+                    if (indexRow != PLAYER_PUNCHING)
                     {
                         bufferedImage[indexCol] = playerSpriteSheet.getSubimage(indexCol * mapObjectWidth, indexRow * mapObjectHeight, mapObjectWidth, mapObjectHeight);
                     }
                     else
                     {
-                        bufferedImage[indexCol] = playerSpriteSheet.getSubimage(indexCol * mapObjectWidth * 2, indexRow * mapObjectHeight, mapObjectWidth, mapObjectHeight);
+                        bufferedImage[indexCol] = playerSpriteSheet.getSubimage(indexCol * mapObjectWidth, indexRow * mapObjectHeight, mapObjectWidth, mapObjectHeight);
                     }
                 }
 
@@ -241,6 +241,24 @@ public class Player extends MapObject
         getPlayerNextPosition();
         checkTileMapCollision();
         setPosition(tempPositionX, tempPositionY);
+
+        //Check if punching has stopped
+        if (animationCurrentAction == PLAYER_PUNCHING)
+        {
+            if (animation.hasPlayedOnce())
+            {
+                playerPunching = false;
+            }
+        }
+
+        //Check if shooting magic power has stopped
+        if (animationCurrentAction == PLAYER_MAGIC_POWER)
+        {
+            if (animation.hasPlayedOnce())
+            {
+                playerShootingMagicPower = false;
+            }
+        }
 
         //Set animation
         if (playerPunching)
