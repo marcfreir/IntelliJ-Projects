@@ -22,7 +22,7 @@ public class Player extends MapObject
     private boolean playerShootingMagicPower;
     private int magicPowerCost;
     private int magicPowerDamage;
-    //private ArrayList<MagicPower> magicPowers;
+    private ArrayList<MagicPower> magicPowers;
 
     //Punch (can be changed to bump)
     private boolean playerPunching;
