@@ -1,5 +1,6 @@
 package com.marc.gamestate;
 
+import com.marc.main.GamePanel;
 import com.marc.tilemap.Background;
 
 import java.awt.*;
@@ -14,6 +15,9 @@ public class MenuState extends GameState
     private Font titleFont;
     private Font regularFont;
 
+    private Color creditsColor;
+    private Font creditsFont;
+
     //Constructor
     public MenuState(GameStateManager gameStateManager)
     {
@@ -24,9 +28,14 @@ public class MenuState extends GameState
             menuStateBackground = new Background("/Backgrounds/menubackground.png", 1);
             menuStateBackground.setBackgroundVector(-0.1, 0);
 
+            //For the Title
             titleColor = new Color(128, 0, 0);
             titleFont = new Font("Century Gothic", Font.PLAIN, 28);
             regularFont = new Font("Arial", Font.PLAIN, 12);
+
+            //For the Credits
+            creditsColor = new Color(108, 35, 253);
+            creditsFont = new Font("Arial", Font.PLAIN, 10);
         }
         catch (Exception exception)
         {
@@ -55,7 +64,12 @@ public class MenuState extends GameState
         //Draw the title
         gameStateGraphics.setColor(titleColor);
         gameStateGraphics.setFont(titleFont);
-        gameStateGraphics.drawString("Svart Slott", 80, 70);
+        gameStateGraphics.drawString("Svart Slott", GamePanel.WIDTH / GamePanel.SCALE / 2 + 10, GamePanel.HEIGHT / GamePanel.SCALE - 30);
+
+        //Draw credits
+        gameStateGraphics.setColor(creditsColor);
+        gameStateGraphics.setFont(creditsFont);
+        gameStateGraphics.drawString("Developed by Marc Freir (2020)", GamePanel.WIDTH / GamePanel.SCALE / 2, GamePanel.HEIGHT / GamePanel.SCALE * 2 - 10);
 
         //Draw the menu options
         gameStateGraphics.setFont(regularFont);

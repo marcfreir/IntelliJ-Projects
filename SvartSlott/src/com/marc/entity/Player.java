@@ -250,7 +250,7 @@ public class Player extends MapObject
                 animationCurrentAction = PLAYER_PUNCHING;
                 animation.setFrames(playerSprites.get(PLAYER_PUNCHING));
                 animation.setDelay(50);
-                mapObjectWidth = 80;
+                mapObjectWidth = 40;
             }
         }
         else if (playerShootingMagicPower)
