@@ -6,6 +6,7 @@ import com.marc.tilemap.Background;
 import com.marc.tilemap.TileMap;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class Level1State extends GameState
 {
@@ -69,13 +70,81 @@ public class Level1State extends GameState
     @Override
     public void keyPressed(int key)
     {
-
+        //Player move to the left
+        if (key == KeyEvent.VK_LEFT)
+        {
+            player.setMovementLeft(true);
+        }
+        //Player move to the right
+        if (key == KeyEvent.VK_RIGHT)
+        {
+            player.setMovementRight(true);
+        }
+        //Player move up
+        if (key == KeyEvent.VK_UP)
+        {
+            player.setMovementUp(true);
+        }
+        //Player move down
+        if (key == KeyEvent.VK_DOWN)
+        {
+            player.setMovementDown(true);
+        }
+        //Player jumping
+        if (key == KeyEvent.VK_A)
+        {
+            player.setMovementJumping(true);
+        }
+        //Player flying
+        if (key == KeyEvent.VK_S)
+        {
+            player.setPlayerFlying(true);
+        }
+        //Player punching
+        if (key == KeyEvent.VK_D)
+        {
+            player.setPlayerPunching();
+        }
+        //Player Shooting Magic Power
+        if (key == KeyEvent.VK_F)
+        {
+            player.setPlayerShootingMagicPower();
+        }
     }
 
     @Override
     public void keyReleased(int key)
     {
-
+        //Player stop move to the left
+        if (key == KeyEvent.VK_LEFT)
+        {
+            player.setMovementLeft(false);
+        }
+        //Player stop move to the right
+        if (key == KeyEvent.VK_RIGHT)
+        {
+            player.setMovementRight(false);
+        }
+        //Player stop move up
+        if (key == KeyEvent.VK_UP)
+        {
+            player.setMovementUp(false);
+        }
+        //Player stop move down
+        if (key == KeyEvent.VK_DOWN)
+        {
+            player.setMovementDown(false);
+        }
+        //Player stop jumping
+        if (key == KeyEvent.VK_A)
+        {
+            player.setMovementJumping(false);
+        }
+        //Player stop flying
+        if (key == KeyEvent.VK_S)
+        {
+            player.setPlayerFlying(false);
+        }
     }
 
 

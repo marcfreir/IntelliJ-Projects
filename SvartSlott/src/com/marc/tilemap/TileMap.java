@@ -87,6 +87,11 @@ public class TileMap
             mapWidth = numCols * tileSize;
             mapHeight = numRows * tileSize;
 
+            boundXMin = GamePanel.WIDTH - mapWidth;
+            boundXMax = 0;
+            boundYMin = GamePanel.HEIGHT - mapHeight;
+            boundYMax = 0;
+
             String delimiters = "\\s+";
 
             for (int row = 0; row < numRows; row++)
