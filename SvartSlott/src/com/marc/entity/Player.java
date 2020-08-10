@@ -49,10 +49,10 @@ public class Player extends MapObject
     public Player(TileMap tileMap) {
         super(tileMap);
 
-        mapObjectWidth = 30;
-        mapObjectHeight = 30;
-        collisionWidth = 20;
-        collisionHeight = 20;
+        mapObjectWidth = 40;
+        mapObjectHeight = 40;
+        collisionWidth = 36;
+        collisionHeight = 36;
 
         objectMoveSpeed = 0.3;
         objectMaxSpeed = 1.6;
@@ -250,7 +250,7 @@ public class Player extends MapObject
                 animationCurrentAction = PLAYER_PUNCHING;
                 animation.setFrames(playerSprites.get(PLAYER_PUNCHING));
                 animation.setDelay(50);
-                mapObjectWidth = 60;
+                mapObjectWidth = 80;
             }
         }
         else if (playerShootingMagicPower)
@@ -260,7 +260,7 @@ public class Player extends MapObject
                 animationCurrentAction = PLAYER_MAGIC_POWER;
                 animation.setFrames(playerSprites.get(PLAYER_MAGIC_POWER));
                 animation.setDelay(100);
-                mapObjectWidth = 30;
+                mapObjectWidth = 40;
             }
         }
         else if (directionY > 0)
@@ -272,7 +272,7 @@ public class Player extends MapObject
                     animationCurrentAction = PLAYER_FLYING;
                     animation.setFrames(playerSprites.get(PLAYER_FLYING));
                     animation.setDelay(100);
-                    mapObjectWidth = 30;
+                    mapObjectWidth = 40;
                 }
             }
             else if (animationCurrentAction != PLAYER_FALLING)
@@ -280,7 +280,7 @@ public class Player extends MapObject
                 animationCurrentAction = PLAYER_FALLING;
                 animation.setFrames(playerSprites.get(PLAYER_FALLING));
                 animation.setDelay(100);
-                mapObjectWidth = 30;
+                mapObjectWidth = 40;
             }
         }
         else if (directionY < 0)
@@ -290,7 +290,7 @@ public class Player extends MapObject
                 animationCurrentAction = PLAYER_JUMPING;
                 animation.setFrames(playerSprites.get(PLAYER_JUMPING));
                 animation.setDelay(-1);
-                mapObjectWidth = 30;
+                mapObjectWidth = 40;
             }
         }
         else if (movementLeft || movementRight)
@@ -300,7 +300,7 @@ public class Player extends MapObject
                 animationCurrentAction = PLAYER_WALKING;
                 animation.setFrames(playerSprites.get(PLAYER_WALKING));
                 animation.setDelay(40);
-                mapObjectWidth = 30;
+                mapObjectWidth = 40;
             }
         }
         else
@@ -310,7 +310,7 @@ public class Player extends MapObject
                 animationCurrentAction = PLAYER_IDLE;
                 animation.setFrames(playerSprites.get(PLAYER_IDLE));
                 animation.setDelay(400);
-                mapObjectWidth = 30;
+                mapObjectWidth = 40;
             }
         }
 
