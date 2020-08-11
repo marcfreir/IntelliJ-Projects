@@ -1,5 +1,6 @@
 package com.marc.gamestate;
 
+import com.marc.entity.Enemy;
 import com.marc.entity.Player;
 import com.marc.main.GamePanel;
 import com.marc.tilemap.Background;
@@ -7,6 +8,7 @@ import com.marc.tilemap.TileMap;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 public class Level1State extends GameState
 {
@@ -14,6 +16,8 @@ public class Level1State extends GameState
     private Background background;
 
     private Player player;
+
+    private ArrayList<Enemy> enemies;
 
     //Constructor
     public Level1State(GameStateManager gameStateManager)
@@ -47,6 +51,10 @@ public class Level1State extends GameState
         //Update player
         player.updatePlayer();
         tileMap.setPosition(GamePanel.WIDTH / 2.0 - player.getVectorPositionX(), GamePanel.HEIGHT / 2.0 - player.getVectorPositionY());
+
+        //Set background
+        background.setBackgroundPosition(tileMap.getAxisX(), tileMap.getAxisY());
+
     }
 
     @Override

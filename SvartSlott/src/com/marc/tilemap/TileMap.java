@@ -117,14 +117,14 @@ public class TileMap
         return tileSize;
     }
 
-    public int getAxisX()
+    public double getAxisX()
     {
-        return (int)axisX;
+        return axisX;
     }
 
-    public int getAxisY()
+    public double getAxisY()
     {
-        return (int)axisY;
+        return axisY;
     }
 
     public int getMapWidth()
