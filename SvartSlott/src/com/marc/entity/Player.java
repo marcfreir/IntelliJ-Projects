@@ -69,7 +69,7 @@ public class Player extends MapObject
 
         magicPowerCost = 200;
         magicPowerDamage = 5;
-        //magicPowers = new ArrayList<MagicPower>();
+        magicPowers = new ArrayList<MagicPower>();
 
         punchDamage = 8;
         punchRange = 40;
@@ -260,6 +260,37 @@ public class Player extends MapObject
             }
         }
 
+        //Magic Power Attack
+        playerMagicPower += 1;
+
+        if (playerMagicPower > playerMaxMagicPower)
+        {
+            playerMagicPower = playerMaxMagicPower;
+        }
+
+        if (playerShootingMagicPower && animationCurrentAction != PLAYER_MAGIC_POWER)
+        {
+            if (playerMagicPower > magicPowerCost)
+            {
+                playerMagicPower = magicPowerCost;
+                MagicPower magicPower1 = new MagicPower(tileMap, animationFacingRight);
+                magicPower1.setPosition(vectorPositionX, vectorPositionY);
+                magicPowers.add(magicPower1);
+            }
+        }
+
+        //Update magic powers
+        for (int index = 0; index < magicPowers.size(); index++)
+        {
+            magicPowers.get(index).updateMagicPower();
+
+            if (magicPowers.get(index).shouldRemoveMagicPower())
+            {
+                magicPowers.remove(index);
+                index--;
+            }
+        }
+
         //Set animation
         if (playerPunching)
         {
@@ -351,6 +382,12 @@ public class Player extends MapObject
     public void drawPlayer(Graphics2D playerGraphics)
     {
         setMapObjectPosition();
+
+        //Draw magic powers
+        for (int index = 0; index < magicPowers.size(); index++)
+        {
+            magicPowers.get(index).drawMagicPower(playerGraphics);
+        }
 
         //Draw player
         if (playerFlinching)

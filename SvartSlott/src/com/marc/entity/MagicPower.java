@@ -90,6 +90,12 @@ public class MagicPower extends MapObject
         checkTileMapCollision();
         setPosition(tempPositionX, tempPositionY);
 
+        //Check magic power hit and remove it
+        if (directionX == 0 && !magicPowerHit)
+        {
+            setMagicPowerHit();
+        }
+
         animation.updateAnimation();
 
         if (magicPowerHit && animation.hasPlayedOnce())
