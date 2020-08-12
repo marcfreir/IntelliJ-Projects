@@ -1,6 +1,7 @@
 package com.marc.gamestate;
 
 import com.marc.entity.Enemy;
+import com.marc.entity.HUD;
 import com.marc.entity.Player;
 import com.marc.entity.enemies.Spoke;
 import com.marc.main.GamePanel;
@@ -19,6 +20,8 @@ public class Level1State extends GameState
     private Player player;
 
     private ArrayList<Enemy> enemies;
+
+    private HUD hud;
 
     //Constructor
     public Level1State(GameStateManager gameStateManager)
@@ -50,6 +53,8 @@ public class Level1State extends GameState
         Spoke spoke = new Spoke(tileMap);
         spoke.setPosition(100, 100);
         enemies.add(spoke);
+
+        hud = new HUD(player);
     }
 
     @Override
@@ -91,6 +96,9 @@ public class Level1State extends GameState
         {
             enemies.get(index).drawMapObject(gameStateGraphics);
         }
+
+        //Draw HUD
+        hud.drawHUD(gameStateGraphics);
     }
 
     @Override
