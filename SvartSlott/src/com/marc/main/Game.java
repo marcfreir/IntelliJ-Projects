@@ -11,6 +11,8 @@ public class Game {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
         window.pack();
+        //Center window
+        window.setLocationRelativeTo(null);
         window.setVisible(true);
     }
 }
