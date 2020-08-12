@@ -9,6 +9,7 @@ public class Enemy extends MapObject
     protected int enemyMaxHeath;
     protected boolean enemyDead;
     protected int enemyDamage;
+
     protected boolean enemyFlinching;
     protected long enemyFlinchTimer;
 
@@ -23,7 +24,6 @@ public class Enemy extends MapObject
         return enemyDead;
     }
 
-    //Setters
     public int getEnemyDamage()
     {
         return enemyDamage;

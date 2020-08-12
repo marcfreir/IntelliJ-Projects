@@ -121,10 +121,13 @@ public class Spoke extends Enemy
 
     public void drawEnemy(Graphics2D enemyGraphics)
     {
+        /*
+         *
         if (notOnScreen())
         {
             return;
         }
+         */
 
         setMapObjectPosition();
 

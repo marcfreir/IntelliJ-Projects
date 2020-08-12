@@ -19,7 +19,7 @@ public class MagicPower extends MapObject
     {
         super(tileMap);
 
-        animationFacingRight = movementRight;
+        animationFacingRight = magicPowerDirectionRight;
 
         objectMoveSpeed = 3.8;
 
@@ -108,6 +108,7 @@ public class MagicPower extends MapObject
 
     public void drawMagicPower(Graphics2D magicPowerGraphics)
     {
+        setMapObjectPosition();
         /*
          * Replaced for "super.drawMapObject(magicPowerGraphics);"
         setMapObjectPosition();
