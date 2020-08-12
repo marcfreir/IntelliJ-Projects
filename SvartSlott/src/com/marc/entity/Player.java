@@ -34,7 +34,7 @@ public class Player extends MapObject
 
     //Animations
     private ArrayList<BufferedImage[]> playerSprites;
-    private final int[] playerNumFrames = {2, 8, 1, 2, 4, 2, 5};
+    private final int[] playerNumFrames = {1, 8, 5, 3, 3, 5, 3, 8, 2, 1, 3};
 
     //Animation actions
     private static final int PLAYER_IDLE = 0;
@@ -148,6 +148,47 @@ public class Player extends MapObject
     public void setPlayerFlying(boolean playerFlying)
     {
         this.playerFlying = playerFlying;
+    }
+
+    public void checkAttack(ArrayList<Enemy> enemies)
+    {
+        //Loop through the enemies
+        for (int indexEnemy = 0; indexEnemy < enemies.size(); indexEnemy++)
+        {
+            Enemy enemy = enemies.get(indexEnemy);
+            //Check punch attack
+            if (playerPunching)
+            {
+                if (animationFacingRight)
+                {
+                    //Check if the enemy is to the right of the player
+                    if (enemy.getVectorPositionX() > vectorPositionX && enemy.getVectorPositionX() < vectorPositionX + punchRange && enemy.getVectorPositionY() > vectorPositionY - mapObjectHeight / 2.0 && enemy.getVectorPositionY() < vectorPositionY + mapObjectHeight / 2.0)
+                    {
+                        enemy.enemyHit(punchDamage);
+                    }
+                }
+                else
+                {
+                    //Check if the enemy is to the left of the player
+                    if (enemy.getVectorPositionX() < vectorPositionX && enemy.getVectorPositionX() > vectorPositionX - punchRange && enemy.getVectorPositionY() > vectorPositionY - mapObjectHeight / 2.0 && enemy.getVectorPositionY() < vectorPositionY + mapObjectHeight / 2.0)
+                    {
+                        enemy.enemyHit(punchDamage);
+                    }
+                }
+            }
+
+            //Check magic power attack
+            for (int indexMagicPower = 0; indexMagicPower < magicPowers.size(); indexMagicPower++)
+            {
+                if (magicPowers.get(indexMagicPower).intersects(enemy))
+                {
+                    enemy.enemyHit(magicPowerDamage);
+                    magicPowers.get(indexMagicPower).setMagicPowerHit();
+                    break;
+                }
+            }
+        }
+
     }
 
     private void getPlayerNextPosition()

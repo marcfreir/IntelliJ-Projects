@@ -67,6 +67,9 @@ public class Level1State extends GameState
         //Set background
         background.setBackgroundPosition(tileMap.getAxisX(), tileMap.getAxisY());
 
+        //Check if player is attacking any enemies
+        player.checkAttack(enemies);
+
         //Update all enemies
         for (int index = 0; index < enemies.size(); index++)
         {
