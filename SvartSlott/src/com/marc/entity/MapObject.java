@@ -259,4 +259,16 @@ public abstract class MapObject
         return (vectorPositionX + mapObjectPositionX + mapObjectWidth < 0) || (vectorPositionX + mapObjectPositionX - mapObjectWidth > GamePanel.WIDTH) ||
                 (vectorPositionY + mapObjectPositionY + mapObjectHeight < 0) || (vectorPositionY + mapObjectPositionY - mapObjectHeight > GamePanel.HEIGHT);
     }
+
+    public void drawMapObject(Graphics2D mapObjectGraphics)
+    {
+        if (animationFacingRight)
+        {
+            mapObjectGraphics.drawImage(animation.getImage(), (int)(vectorPositionX + mapObjectPositionX - mapObjectWidth / 2), (int)(vectorPositionY + mapObjectPositionY - mapObjectHeight / 2), null);
+        }
+        else
+        {
+            mapObjectGraphics.drawImage(animation.getImage(), (int)(vectorPositionX + mapObjectPositionX - mapObjectWidth / 2 + mapObjectWidth), (int)(vectorPositionY + mapObjectPositionY - mapObjectHeight / 2), -mapObjectWidth, mapObjectHeight, null);
+        }
+    }
 }

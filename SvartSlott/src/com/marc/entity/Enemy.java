@@ -5,12 +5,12 @@ import com.marc.tilemap.TileMap;
 public class Enemy extends MapObject
 {
     //Enemy assets
-    private int enemyHealth;
-    private int enemyMaxHeath;
-    private boolean enemyDead;
-    private int enemyDamage;
-    private boolean enemyFlinching;
-    private long enemyFlinchTimer;
+    protected int enemyHealth;
+    protected int enemyMaxHeath;
+    protected boolean enemyDead;
+    protected int enemyDamage;
+    protected boolean enemyFlinching;
+    protected long enemyFlinchTimer;
 
     //Constructor
     public Enemy(TileMap tileMap)
@@ -49,5 +49,10 @@ public class Enemy extends MapObject
 
         enemyFlinching = true;
         enemyFlinchTimer = System.nanoTime();
+    }
+
+    public void updateEnemy()
+    {
+
     }
 }

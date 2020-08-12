@@ -45,7 +45,7 @@ public class Player extends MapObject
     private static final int PLAYER_MAGIC_POWER = 5;
     private static final int PLAYER_PUNCHING = 6;
 
-
+    //Constructor
     public Player(TileMap tileMap) {
         super(tileMap);
 
@@ -399,6 +399,8 @@ public class Player extends MapObject
                 return;
             }
         }
+        /*
+         * Replaced for "super.drawMapObject(playerGraphics);"
         if (animationFacingRight)
         {
             playerGraphics.drawImage(animation.getImage(), (int)(vectorPositionX + mapObjectPositionX - mapObjectWidth / 2), (int)(vectorPositionY + mapObjectPositionY - mapObjectHeight / 2), null);
@@ -407,5 +409,8 @@ public class Player extends MapObject
         {
             playerGraphics.drawImage(animation.getImage(), (int)(vectorPositionX + mapObjectPositionX - mapObjectWidth / 2 + mapObjectWidth), (int)(vectorPositionY + mapObjectPositionY - mapObjectHeight / 2), -mapObjectWidth, mapObjectHeight, null);
         }
+         */
+        //Replacement from above
+        super.drawMapObject(playerGraphics);
     }
 }

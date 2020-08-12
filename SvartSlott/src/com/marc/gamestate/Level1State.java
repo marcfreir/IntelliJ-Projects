@@ -2,6 +2,7 @@ package com.marc.gamestate;
 
 import com.marc.entity.Enemy;
 import com.marc.entity.Player;
+import com.marc.entity.enemies.Spoke;
 import com.marc.main.GamePanel;
 import com.marc.tilemap.Background;
 import com.marc.tilemap.TileMap;
@@ -42,7 +43,13 @@ public class Level1State extends GameState
         player = new Player(tileMap);
         player.setPosition(100, 100);
 
-        //System.out.println("Current player: " + player);
+        //System.out.println("Current player: " + player); <-- Just for debugging
+
+        enemies = new ArrayList<Enemy>();
+
+        Spoke spoke = new Spoke(tileMap);
+        spoke.setPosition(100, 100);
+        enemies.add(spoke);
     }
 
     @Override
@@ -55,6 +62,11 @@ public class Level1State extends GameState
         //Set background
         background.setBackgroundPosition(tileMap.getAxisX(), tileMap.getAxisY());
 
+        //Update all enemies
+        for (int index = 0; index < enemies.size(); index++)
+        {
+            enemies.get(index).updateEnemy();
+        }
     }
 
     @Override
@@ -73,6 +85,12 @@ public class Level1State extends GameState
 
         //Draw the player
         player.drawPlayer(gameStateGraphics);
+
+        //Draw the enemies
+        for (int index = 0; index < enemies.size(); index++)
+        {
+            enemies.get(index).drawMapObject(gameStateGraphics);
+        }
     }
 
     @Override

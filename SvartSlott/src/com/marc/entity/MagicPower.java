@@ -19,6 +19,8 @@ public class MagicPower extends MapObject
     {
         super(tileMap);
 
+        animationFacingRight = movementRight;
+
         objectMoveSpeed = 3.8;
 
         if (magicPowerDirectionRight)
@@ -106,6 +108,8 @@ public class MagicPower extends MapObject
 
     public void drawMagicPower(Graphics2D magicPowerGraphics)
     {
+        /*
+         * Replaced for "super.drawMapObject(magicPowerGraphics);"
         setMapObjectPosition();
 
         if (animationFacingRight)
@@ -116,5 +120,8 @@ public class MagicPower extends MapObject
         {
             magicPowerGraphics.drawImage(animation.getImage(), (int)(vectorPositionX + mapObjectPositionX - mapObjectWidth / 2 + mapObjectWidth), (int)(vectorPositionY + mapObjectPositionY - mapObjectHeight / 2), -mapObjectWidth, mapObjectHeight, null);
         }
+        */
+        //Replacement from above
+        super.drawMapObject(magicPowerGraphics);
     }
 }
