@@ -1,5 +1,6 @@
 package com.marc.gamestate;
 
+import com.marc.entity.DepartureExplosion;
 import com.marc.entity.Enemy;
 import com.marc.entity.HUD;
 import com.marc.entity.Player;
@@ -20,6 +21,8 @@ public class Level1State extends GameState
     private Player player;
 
     private ArrayList<Enemy> enemies;
+
+    private ArrayList<DepartureExplosion> departureExplosions;
 
     private HUD hud;
 
@@ -54,6 +57,8 @@ public class Level1State extends GameState
         spoke.setPosition(100, 100);
         enemies.add(spoke);
 
+        departureExplosions = new ArrayList<DepartureExplosion>();
+
         hud = new HUD(player);
     }
 
@@ -73,12 +78,28 @@ public class Level1State extends GameState
         //Update all enemies
         for (int index = 0; index < enemies.size(); index++)
         {
-            enemies.get(index).updateEnemy();
+            Enemy enemy = enemies.get(index);
+            enemy.updateEnemy();
 
             //Check if the enemies are dead
-            if (enemies.get(index).isEnemyDead())
+            if (enemy.isEnemyDead())
             {
                 enemies.remove(index);
+                index--;
+
+                departureExplosions.add(new DepartureExplosion(enemy.getVectorPositionX(), enemy.getVectorPositionY()));
+            }
+        }
+
+        //Update departure explosion
+        for (int index = 0; index < departureExplosions.size(); index++)
+        {
+            departureExplosions.get(index).updateDepartureExplosion();
+
+            //Remove departure explosion
+            if (departureExplosions.get(index).shouldRemoveExplosion())
+            {
+                departureExplosions.remove(index);
                 index--;
             }
         }
@@ -105,6 +126,12 @@ public class Level1State extends GameState
         for (int index = 0; index < enemies.size(); index++)
         {
             enemies.get(index).drawMapObject(gameStateGraphics);
+        }
+
+        //Draw enemy departure explosion
+        for (int index = 0; index < departureExplosions.size(); index++)
+        {
+            departureExplosions.get(index).drawDepartureExplosion(gameStateGraphics);
         }
 
         //Draw HUD

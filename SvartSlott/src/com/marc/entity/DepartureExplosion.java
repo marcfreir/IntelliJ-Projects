@@ -1,6 +1,7 @@
 package com.marc.entity;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class DepartureExplosion
@@ -8,10 +9,12 @@ public class DepartureExplosion
     //Coordinates
     private int explosionPositionX;
     private int explosionPositionY;
+    private int explosionMapPositionX;
+    private int explosionMapPositionY;
 
     //Dimensions
-    private int mapExplosionWidth;
-    private int mapExplosionHeight;
+    private int explosionMapWidth;
+    private int explosionMapHeight;
 
     private Animation animation;
     private BufferedImage[] explosionSprites;
@@ -24,14 +27,20 @@ public class DepartureExplosion
         this.explosionPositionX = explosionPositionX;
         this.explosionPositionY = explosionPositionY;
 
-        mapExplosionWidth = 30;
-        mapExplosionHeight = 30;
+        explosionMapWidth = 30;
+        explosionMapHeight = 30;
 
         try
         {
-            BufferedImage explosionSpriteSheet = ImageIO.read(getClass().getResourceAsStream("/Sprites/Enemies/departureExplosion.png"));
+            BufferedImage explosionSpriteSheet = ImageIO.read(getClass().getResourceAsStream("/Sprites/Enemies/departureExplosion30x30.png"));
 
-            explosionSprites = new BufferedImage[6];
+            int numExplosionSprites = 6;
+            explosionSprites = new BufferedImage[numExplosionSprites];
+
+            for (int indexExplosion  = 0; indexExplosion < explosionSprites.length; indexExplosion++)
+            {
+                explosionSprites[indexExplosion] = explosionSpriteSheet.getSubimage(indexExplosion * explosionMapWidth, 0, explosionMapWidth, explosionMapHeight);
+            }
 
 
         }
@@ -39,5 +48,35 @@ public class DepartureExplosion
         {
             exception.printStackTrace();
         }
+
+        animation = new Animation();
+        animation.setFrames(explosionSprites);
+        animation.setDelay(70);
+    }
+
+    public void updateDepartureExplosion()
+    {
+        animation.updateAnimation();
+
+        if (animation.hasPlayedOnce())
+        {
+            removeExplosion = true;
+        }
+    }
+
+    public boolean shouldRemoveExplosion()
+    {
+        return removeExplosion;
+    }
+
+    public void setExplosionMapPosition(int explosionMapPositionX, int explosionMapPositionY)
+    {
+        this.explosionMapPositionX = explosionMapPositionX;
+        this.explosionMapPositionY = explosionMapPositionY;
+    }
+
+    public void drawDepartureExplosion(Graphics2D departureExplosionGraphics)
+    {
+        departureExplosionGraphics.drawImage(animation.getImage(), explosionPositionX + explosionMapPositionX - explosionMapWidth / 2, explosionPositionY + explosionMapPositionY - explosionMapHeight / 2, null);
     }
 }
