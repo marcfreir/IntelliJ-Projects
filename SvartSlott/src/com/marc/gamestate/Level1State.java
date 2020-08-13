@@ -51,15 +51,33 @@ public class Level1State extends GameState
 
         //System.out.println("Current player: " + player); <-- Just for debugging
 
-        enemies = new ArrayList<Enemy>();
-
-        Spoke spoke = new Spoke(tileMap);
-        spoke.setPosition(100, 100);
-        enemies.add(spoke);
+        populateEnemies();
 
         departureExplosions = new ArrayList<DepartureExplosion>();
 
         hud = new HUD(player);
+    }
+
+    private void populateEnemies()
+    {
+
+        enemies = new ArrayList<Enemy>();
+
+        Spoke spoke;
+        Point[] points = new Point[] {
+                new Point(200, 100),
+                new Point(860, 100),
+                new Point(1525, 100),
+                new Point(1680, 100),
+                new Point(1800, 100)
+        };
+
+        for (int index = 0; index < points.length; index++)
+        {
+            spoke = new Spoke(tileMap);
+            spoke.setPosition(points[index].x, points[index].y);
+            enemies.add(spoke);
+        }
     }
 
     @Override
@@ -131,6 +149,7 @@ public class Level1State extends GameState
         //Draw enemy departure explosion
         for (int index = 0; index < departureExplosions.size(); index++)
         {
+            departureExplosions.get(index).setExplosionMapPosition((int)tileMap.getAxisX(), (int)tileMap.getAxisY());
             departureExplosions.get(index).drawDepartureExplosion(gameStateGraphics);
         }
 
