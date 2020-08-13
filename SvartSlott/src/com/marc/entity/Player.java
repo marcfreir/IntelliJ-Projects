@@ -187,8 +187,36 @@ public class Player extends MapObject
                     break;
                 }
             }
+
+            //Check for enemy collision
+            if (intersects(enemy))
+            {
+                playerHit(enemy.getEnemyDamage());
+                //playerHit();
+            }
+        }
+    }
+
+    public void playerHit(int magicPowerDamage)
+    {
+        if (playerFlinching)
+        {
+            return;
+        }
+        playerHealth -= magicPowerDamage;
+
+        if (playerHealth < 0)
+        {
+            playerHealth = 0;
         }
 
+        if (playerHealth == 0)
+        {
+            playerDead = true;
+        }
+
+        playerFlinching = true;
+        playerFlinchTimer = System.nanoTime();
     }
 
     private void getPlayerNextPosition()
@@ -329,6 +357,17 @@ public class Player extends MapObject
             {
                 magicPowers.remove(index);
                 index--;
+            }
+        }
+
+        //Check done flinching
+        if (playerFlinching)
+        {
+            long elapsed = (System.nanoTime() - playerFlinchTimer) / 1000000;
+
+            if (elapsed > 1000)
+            {
+                playerFlinching = false;
             }
         }
 
