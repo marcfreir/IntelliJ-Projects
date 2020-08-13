@@ -34,7 +34,9 @@ public class Spoke extends Enemy
         try
         {
             BufferedImage enemySpokeSpriteSheet = ImageIO.read(getClass().getResourceAsStream("/Sprites/Enemies/spriteSheetEnemySpoke40x40.png"));
-            enemySprites = new BufferedImage[3];
+
+            int numEnemySprites = 3;
+            enemySprites = new BufferedImage[numEnemySprites];
 
             for (int indexRow = 0; indexRow < enemySprites.length; indexRow++)
             {

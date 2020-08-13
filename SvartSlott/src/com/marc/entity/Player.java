@@ -34,7 +34,7 @@ public class Player extends MapObject
 
     //Animations
     private ArrayList<BufferedImage[]> playerSprites;
-    private final int[] playerNumFrames = {1, 8, 5, 3, 3, 5, 3, 8, 2, 1, 3};
+    private final int[] playerNumFrames = {2, 8, 1, 2, 4, 2, 2};
 
     //Animation actions
     private static final int PLAYER_IDLE = 0;
@@ -51,8 +51,8 @@ public class Player extends MapObject
 
         mapObjectWidth = 40;
         mapObjectHeight = 40;
-        collisionWidth = 36;
-        collisionHeight = 36;
+        collisionWidth = 32;
+        collisionHeight = 32;
 
         objectMoveSpeed = 0.3;
         objectMaxSpeed = 1.6;
@@ -81,9 +81,9 @@ public class Player extends MapObject
 
             playerSprites = new ArrayList<BufferedImage[]>();
 
-            int playerSpritesNumRows = 7;
+            int numRowsPlayerSprites = 7;
 
-            for (int indexRow = 0; indexRow < playerSpritesNumRows; indexRow++)
+            for (int indexRow = 0; indexRow < numRowsPlayerSprites; indexRow++)
             {
                 BufferedImage[] bufferedImage = new BufferedImage[playerNumFrames[indexRow]];
 

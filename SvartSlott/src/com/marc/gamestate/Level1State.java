@@ -74,6 +74,13 @@ public class Level1State extends GameState
         for (int index = 0; index < enemies.size(); index++)
         {
             enemies.get(index).updateEnemy();
+
+            //Check if the enemies are dead
+            if (enemies.get(index).isEnemyDead())
+            {
+                enemies.remove(index);
+                index--;
+            }
         }
     }
 
