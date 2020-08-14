@@ -51,7 +51,7 @@ public class Player extends MapObject
 
         mapObjectWidth = 40;
         mapObjectHeight = 40;
-        collisionWidth = 32;
+        collisionWidth = 20;
         collisionHeight = 32;
 
         objectMoveSpeed = 0.3;
@@ -341,7 +341,7 @@ public class Player extends MapObject
         {
             if (playerMagicPower > magicPowerCost)
             {
-                playerMagicPower = magicPowerCost;
+                playerMagicPower -= magicPowerCost;
                 MagicPower magicPower1 = new MagicPower(tileMap, animationFacingRight);
                 magicPower1.setPosition(vectorPositionX, vectorPositionY);
                 magicPowers.add(magicPower1);

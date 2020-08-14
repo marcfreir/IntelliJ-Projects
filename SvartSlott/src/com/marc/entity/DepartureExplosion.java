@@ -69,10 +69,10 @@ public class DepartureExplosion
         return removeExplosion;
     }
 
-    public void setExplosionMapPosition(int explosionMapPositionX, int explosionMapPositionY)
+    public void setExplosionMapPosition(int explosionPositionX, int explosionPositionY)
     {
-        this.explosionMapPositionX = explosionMapPositionX;
-        this.explosionMapPositionY = explosionMapPositionY;
+        this.explosionMapPositionX = explosionPositionX;
+        this.explosionMapPositionY = explosionPositionY;
     }
 
     public void drawDepartureExplosion(Graphics2D departureExplosionGraphics)
