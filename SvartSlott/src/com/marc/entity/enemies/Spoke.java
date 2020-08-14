@@ -24,7 +24,7 @@ public class Spoke extends Enemy
 
         mapObjectWidth = 40;
         mapObjectHeight = 40;
-        collisionWidth = 36;
+        collisionWidth = 20;
         collisionHeight = 36;
 
         enemyHealth = enemyMaxHeath = 2;
