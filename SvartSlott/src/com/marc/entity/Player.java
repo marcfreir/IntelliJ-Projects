@@ -197,13 +197,13 @@ public class Player extends MapObject
         }
     }
 
-    public void playerHit(int magicPowerDamage)
+    public void playerHit(int damage)
     {
         if (playerFlinching)
         {
             return;
         }
-        playerHealth -= magicPowerDamage;
+        playerHealth -= damage;
 
         if (playerHealth < 0)
         {
