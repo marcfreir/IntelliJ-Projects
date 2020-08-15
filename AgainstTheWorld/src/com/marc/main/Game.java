@@ -1,9 +1,15 @@
 package com.marc.main;
 
+import com.marc.entities.Entity;
+import com.marc.entities.Player;
+import com.marc.graphics.SpriteSheet;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Game extends Canvas implements Runnable {
 
@@ -19,10 +25,20 @@ public class Game extends Canvas implements Runnable {
 
     private BufferedImage gameImage;
 
+    public List<Entity> entityList;
+    public SpriteSheet spriteSheet;
+
     public Game() {
         setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
         initFrame();
+        //Starting objects
         gameImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+        entityList = new ArrayList<Entity>();
+        spriteSheet = new SpriteSheet("/SpriteSheet/spriteSheet.png");
+
+        Player player = new Player(0, 0, 40, 40, spriteSheet.getSpritesheet(0, 160, 40, 40));
+        entityList.add(player);
+
     }
 
     public void initFrame() {
@@ -56,7 +72,10 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void updateGame() {
-
+        for(int indexEntity = 0; indexEntity < entityList.size(); indexEntity++) {
+            Entity entity = entityList.get(indexEntity);
+            entity.updateEntity();
+        }
     }
 
     public void renderGame() {
@@ -71,7 +90,12 @@ public class Game extends Canvas implements Runnable {
         gameGraphics.fillRect(0, 0, WIDTH, HEIGHT);
 
         //Rendering game
-        Graphics2D gameGraphics2D = (Graphics2D) gameGraphics;
+        //Graphics2D gameGraphics2D = (Graphics2D) gameGraphics;
+
+        for(int indexEntity = 0; indexEntity < entityList.size(); indexEntity++) {
+            Entity entity = entityList.get(indexEntity);
+            entity.renderEntity(gameGraphics);
+        }
 
         /***/
         gameGraphics.dispose();

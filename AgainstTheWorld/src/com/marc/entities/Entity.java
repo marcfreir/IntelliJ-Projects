@@ -39,7 +39,13 @@ public class Entity {
         return this.entityHeight;
     }
 
+    public void updateEntity() {
+        //
+    }
+
     public void renderEntity(Graphics entityGraphics) {
         entityGraphics.drawImage(entitySprite, this.getEntityX(), this.getEntityY(), null);
     }
+
+
 }
