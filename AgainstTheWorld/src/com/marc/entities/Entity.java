@@ -5,10 +5,10 @@ import java.awt.image.BufferedImage;
 
 public class Entity {
 
-    private int entityX;
-    private int entityY;
-    private int entityWidth;
-    private int entityHeight;
+    protected int entityX;
+    protected int entityY;
+    protected int entityWidth;
+    protected int entityHeight;
 
     private BufferedImage entitySprite;
 
@@ -21,22 +21,30 @@ public class Entity {
         this.entitySprite = entitySprite;
     }
 
-    //Getters
+    //Setters
+    public void setEntityX(int entityX) {
+        this.entityX = entityX;
+    }
 
+    public void setEntityY(int entityY) {
+        this.entityY = entityY;
+    }
+
+    //Getters
     public int getEntityX() {
-        return this.entityX;
+        return entityX;
     }
 
     public int getEntityY() {
-        return this.entityY;
+        return entityY;
     }
 
     public int getEntityWidth() {
-        return this.entityWidth;
+        return entityWidth;
     }
 
     public int getEntityHeight() {
-        return this.entityHeight;
+        return entityHeight;
     }
 
     public void updateEntity() {
