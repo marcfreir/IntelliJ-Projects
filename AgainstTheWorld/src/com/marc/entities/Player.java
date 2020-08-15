@@ -9,7 +9,7 @@ public class Player extends Entity {
     public boolean playerDirectionUp;
     public boolean playerDirectionDown;
 
-    public int playerSpeed = 4;
+    public double playerSpeed = 1.2;
 
     public Player(int entityX, int entityY, int entityWidth, int entityHeight, BufferedImage entitySprite) {
         super(entityX, entityY, entityWidth, entityHeight, entitySprite);
