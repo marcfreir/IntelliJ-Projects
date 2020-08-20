@@ -14,6 +14,13 @@ public class Tile {
     private int tileAxisX;
     private int tileAxisY;
 
+    //Constructor
+    public Tile(int tileAxisX, int tileAxisY, BufferedImage tileSprite) {
+        this.tileAxisX = tileAxisX;
+        this.tileAxisY = tileAxisY;
+        this.tileSprite = tileSprite;
+    }
+
     public void renderTile(Graphics tileGraphics) {
         tileGraphics.drawImage(tileSprite, tileAxisX, tileAxisY, null);
     }
