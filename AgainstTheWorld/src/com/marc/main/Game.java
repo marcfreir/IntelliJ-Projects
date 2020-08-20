@@ -3,6 +3,7 @@ package com.marc.main;
 import com.marc.entities.Entity;
 import com.marc.entities.Player;
 import com.marc.graphics.SpriteSheet;
+import com.marc.world.World;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,6 +31,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
     public List<Entity> entityList;
     public static SpriteSheet spriteSheet;
 
+    public static World world;
+
     private Player player;
 
     public Game() {
@@ -37,6 +40,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
         setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
         initFrame();
         //Starting objects
+        world = new World("/Map/mapStage01.png");
         gameImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         entityList = new ArrayList<Entity>();
         spriteSheet = new SpriteSheet("/SpriteSheet/spriteSheet.png");
