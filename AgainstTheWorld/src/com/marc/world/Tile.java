@@ -22,6 +22,6 @@ public class Tile {
     }
 
     public void renderTile(Graphics tileGraphics) {
-        tileGraphics.drawImage(tileSprite, tileAxisX, tileAxisY, null);
+        tileGraphics.drawImage(tileSprite, tileAxisX - Camera.cameraOffsetX, tileAxisY - Camera.cameraOffsetY, null);
     }
 }

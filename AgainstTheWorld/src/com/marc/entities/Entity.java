@@ -1,6 +1,7 @@
 package com.marc.entities;
 
 import com.marc.main.Game;
+import com.marc.world.Camera;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -59,7 +60,7 @@ public class Entity {
     }
 
     public void renderEntity(Graphics entityGraphics) {
-        entityGraphics.drawImage(entitySprite, this.getEntityX(), this.getEntityY(), null);
+        entityGraphics.drawImage(entitySprite, this.getEntityX() - Camera.cameraOffsetX, this.getEntityY() - Camera.cameraOffsetY, null);
     }
 
 
