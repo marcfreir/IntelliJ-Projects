@@ -28,7 +28,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
     private BufferedImage gameImage;
 
-    public List<Entity> entityList;
+    public static List<Entity> entityList;
     public static SpriteSheet spriteSheet;
 
     public static World world;

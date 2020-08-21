@@ -7,8 +7,8 @@ import java.awt.image.BufferedImage;
 
 public class Entity {
 
-    public static BufferedImage LIFE_ENTITY = Game.spriteSheet.getSpritesheet(12, 54, 14, 14);
-    public static BufferedImage MAGIC_POWER_ENTITY = Game.spriteSheet.getSpritesheet(52, 54, 14, 14);
+    public static BufferedImage LIFE_ENTITY = Game.spriteSheet.getSpritesheet(12, 54, 16, 14);
+    public static BufferedImage MAGIC_POWER_ENTITY = Game.spriteSheet.getSpritesheet(52, 54, 16, 14);
     public static BufferedImage ENEMY_ENTITY = Game.spriteSheet.getSpritesheet(280, 80, 40, 40);
 
 

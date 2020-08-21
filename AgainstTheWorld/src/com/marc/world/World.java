@@ -1,5 +1,9 @@
 package com.marc.world;
 
+import com.marc.entities.Enemy;
+import com.marc.entities.Entity;
+import com.marc.entities.Life;
+import com.marc.entities.MagicPower;
 import com.marc.main.Game;
 
 import javax.imageio.ImageIO;
@@ -44,10 +48,13 @@ public class World {
                         Game.player.setEntityY(indexMapY * 40);
                     } else if(currentPixel == 0xFFFF0000) {
                         //Enemy
+                        Game.entityList.add(new Enemy(indexMapX * 40, indexMapY * 40, 40, 40, Entity.ENEMY_ENTITY));
                     } else if(currentPixel == 0xFF4800FF) {
                         //Life
+                        Game.entityList.add(new Life(indexMapX * 40, indexMapY * 40, 16, 14, Entity.LIFE_ENTITY));
                     } else if(currentPixel == 0xFF4CFF00) {
                         //Magic Power
+                        Game.entityList.add(new MagicPower(indexMapX * 40, indexMapY * 40, 16, 14, Entity.MAGIC_POWER_ENTITY));
                     }
                 }
             }
