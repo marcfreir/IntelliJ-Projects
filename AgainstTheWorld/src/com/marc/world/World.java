@@ -1,5 +1,7 @@
 package com.marc.world;
 
+import com.marc.main.Game;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -26,6 +28,9 @@ public class World {
 
                     int currentPixel = mapPixels[indexMapX + (indexMapY * map.getWidth())];
 
+                    //Space - background
+                    tiles[indexMapX + (indexMapY * WORLD_WIDTH)] = new SpaceBackgroundTile(indexMapX * 40, indexMapY * 40, Tile.TILE_SPACE_BACKGROUND);
+
                     if(currentPixel == 0xFF000000) {
                         //Space - background
                         tiles[indexMapX + (indexMapY * WORLD_WIDTH)] = new SpaceBackgroundTile(indexMapX * 40, indexMapY * 40, Tile.TILE_SPACE_BACKGROUND);
@@ -34,10 +39,15 @@ public class World {
                         tiles[indexMapX + (indexMapY * WORLD_WIDTH)] = new SpaceBackgroundTile(indexMapX * 40, indexMapY * 40, Tile.TILE_SPACE_BARRIER);
                     } else if(currentPixel == 0xFFFFD800) {
                         //Player
-                        tiles[indexMapX + (indexMapY * WORLD_WIDTH)] = new SpaceBackgroundTile(indexMapX * 40, indexMapY * 40, Tile.TILE_SPACE_BACKGROUND);
-                    } else {
-                        //Space - background
-                        tiles[indexMapX + (indexMapY * WORLD_WIDTH)] = new SpaceBackgroundTile(indexMapX * 40, indexMapY * 40, Tile.TILE_SPACE_BACKGROUND);
+                        //tiles[indexMapX + (indexMapY * WORLD_WIDTH)] = new SpaceBackgroundTile(indexMapX * 40, indexMapY * 40, Tile.TILE_SPACE_BACKGROUND);
+                        Game.player.setEntityX(indexMapX * 40);
+                        Game.player.setEntityY(indexMapY * 40);
+                    } else if(currentPixel == 0xFFFF0000) {
+                        //Enemy
+                    } else if(currentPixel == 0xFF4800FF) {
+                        //Life
+                    } else if(currentPixel == 0xFF4CFF00) {
+                        //Magic Power
                     }
                 }
             }

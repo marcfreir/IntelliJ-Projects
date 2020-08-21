@@ -1,9 +1,16 @@
 package com.marc.entities;
 
+import com.marc.main.Game;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Entity {
+
+    public static BufferedImage LIFE_ENTITY = Game.spriteSheet.getSpritesheet(12, 54, 14, 14);
+    public static BufferedImage MAGIC_POWER_ENTITY = Game.spriteSheet.getSpritesheet(52, 54, 14, 14);
+    public static BufferedImage ENEMY_ENTITY = Game.spriteSheet.getSpritesheet(280, 80, 40, 40);
+
 
     protected double entityX;
     protected double entityY;
