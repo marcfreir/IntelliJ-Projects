@@ -66,11 +66,11 @@ public class World {
 
     public void renderWorld(Graphics worldGraphics) {
 
-        int cameraStartPositionX = Camera.cameraOffsetX / 40;
-        int cameraStartPositionY = Camera.cameraOffsetY / 40;
+        int cameraStartPositionX = Camera.cameraOffsetX >> 8;
+        int cameraStartPositionY = Camera.cameraOffsetY >> 8;
 
-        int cameraFinalPositionX = cameraStartPositionX + (Game.WIDTH / 40);
-        int cameraFinalPositionY = cameraStartPositionY + (Game.HEIGHT / 40);
+        int cameraFinalPositionX = cameraStartPositionX + (Game.WIDTH >> 4);
+        int cameraFinalPositionY = cameraStartPositionY + (Game.HEIGHT >> 4);
 
         for(int indexAxisX = cameraStartPositionX; indexAxisX <= cameraFinalPositionX; indexAxisX++) {
             for(int indexAxisY = cameraStartPositionY; indexAxisY <= cameraFinalPositionY; indexAxisY++) {

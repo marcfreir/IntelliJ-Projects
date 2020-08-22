@@ -2,6 +2,7 @@ package com.marc.entities;
 
 import com.marc.main.Game;
 import com.marc.world.Camera;
+import com.marc.world.World;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -89,8 +90,9 @@ public class Player extends Entity {
         }
 
         //Camera
-        Camera.cameraOffsetX = this.getEntityX() - (Game.WIDTH / 2);
-        Camera.cameraOffsetY = this.getEntityY() - (Game.HEIGHT / 2);
+        Camera.cameraOffsetX = Camera.clamp(this.getEntityX() - (Game.WIDTH / 2), 0, World.WORLD_WIDTH * 40 - Game.WIDTH);
+        Camera.cameraOffsetY = Camera.clamp(this.getEntityY() - (Game.HEIGHT / 2), 0, World.WORLD_HEIGHT * 40 - Game.HEIGHT);
+
     }
 
     @Override
