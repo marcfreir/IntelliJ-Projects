@@ -16,6 +16,7 @@ public class World {
     public static Tile[] tiles;
     public static int WORLD_WIDTH;
     public static int WORLD_HEIGHT;
+    public static final int TILE_SIZE = 40;
 
     //Constructor
     public World(String path) {
@@ -62,6 +63,26 @@ public class World {
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
+    }
+
+    public static boolean placeIsFree(int nextPositionX, int nextPositionY) {
+
+        int positionX1 = nextPositionX / TILE_SIZE;
+        int positionY1 = nextPositionY / TILE_SIZE;
+
+        int positionX2 = ((nextPositionX + TILE_SIZE) - 1) / TILE_SIZE;
+        int positionY2 = nextPositionY / TILE_SIZE;
+
+        int positionX3 = nextPositionX / TILE_SIZE;
+        int positionY3 = ((nextPositionY + TILE_SIZE) - 1) / TILE_SIZE;
+
+        int positionX4 = ((nextPositionX + TILE_SIZE) - 1) / TILE_SIZE;
+        int positionY4 = ((nextPositionY + TILE_SIZE) - 1) / TILE_SIZE;
+
+        return !((tiles[positionX1 + (positionY1 * World.WORLD_WIDTH)] instanceof SpaceBarrierTile) ||
+                (tiles[positionX2 + (positionY2 * World.WORLD_WIDTH)] instanceof SpaceBarrierTile) ||
+                (tiles[positionX3 + (positionY3 * World.WORLD_WIDTH)] instanceof SpaceBarrierTile) ||
+                (tiles[positionX4 + (positionY4 * World.WORLD_WIDTH)] instanceof SpaceBarrierTile));
     }
 
     public void renderWorld(Graphics worldGraphics) {

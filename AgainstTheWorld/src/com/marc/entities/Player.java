@@ -54,22 +54,22 @@ public class Player extends Entity {
     @Override
     public void updateEntity() {
         playerMoved = false;
-        if(playerDirectionRight) {
+        if(playerDirectionRight && World.placeIsFree((int) (entityX + playerSpeed), this.getEntityY())) {
             playerMoved = true;
             playerDirectionVector = playerVectorRight;
             entityX += playerSpeed;
         }
-        else if(playerDirectionLeft) {
+        else if(playerDirectionLeft  && World.placeIsFree((int) (entityX - playerSpeed), this.getEntityY())) {
             playerMoved = true;
             playerDirectionVector = playerVectorLeft;
             entityX -= playerSpeed;
         }
-        if(playerDirectionUp) {
+        if(playerDirectionUp  && World.placeIsFree(this.getEntityX(), (int) (entityY - playerSpeed))) {
             playerMoved  =true;
             //playerCurrentVector = playerVectorUp;
             entityY -= playerSpeed;
         }
-        else if(playerDirectionDown) {
+        else if(playerDirectionDown && World.placeIsFree(this.getEntityX(), (int) (entityY + playerSpeed))) {
             playerMoved = true;
             //playerCurrentVector = playerVectorDown;
             entityY += playerSpeed;
