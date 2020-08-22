@@ -16,6 +16,7 @@ import java.util.List;
 
 public class Game extends Canvas implements Runnable, KeyListener {
 
+    private static final long serialVersionUID = 1L;
     public static JFrame frame;
     //For game thread
     private Thread thread;
@@ -43,7 +44,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
         gameImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         entityList = new ArrayList<Entity>();
         spriteSheet = new SpriteSheet("/SpriteSheet/spriteSheet.png");
-        player = new Player(0, 0, 40, 40, spriteSheet.getSpritesheet(0, 160, 40, 40));
+        player = new Player(0, 0, 40, 40, spriteSheet.getSpritesheet(0, 80, 40, 40));
         entityList.add(player);
         world = new World("/Map/mapStage01.png");
 
@@ -123,6 +124,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
         double delta = 0.0;
         int framesPerSecond = 0;
         double gameTimer = System.currentTimeMillis();
+        requestFocus();
 
         while(isRunning) {
             long now = System.nanoTime();
@@ -137,7 +139,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
             }
 
             if(System.currentTimeMillis() - gameTimer >= 1000) {
-                //System.out.println("FPS: " + framesPerSecond); //Just for debugging
+                System.out.println("FPS: " + framesPerSecond); //Just for debugging
                 framesPerSecond = 0;
                 gameTimer += 1000;
             }

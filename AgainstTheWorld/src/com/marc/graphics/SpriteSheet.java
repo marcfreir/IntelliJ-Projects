@@ -2,6 +2,7 @@ package com.marc.graphics;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class SpriteSheet {
 
@@ -11,7 +12,7 @@ public class SpriteSheet {
     public SpriteSheet(String path) {
         try {
             spritesheet = ImageIO.read(getClass().getResource(path));
-        } catch (Exception exception) {
+        } catch (IOException exception) {
             exception.printStackTrace();
         }
     }

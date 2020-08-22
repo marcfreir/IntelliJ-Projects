@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class World {
 
-    private Tile[] tiles;
+    public static Tile[] tiles;
     public static int WORLD_WIDTH;
     public static int WORLD_HEIGHT;
 
@@ -40,7 +40,7 @@ public class World {
                         tiles[indexMapX + (indexMapY * WORLD_WIDTH)] = new SpaceBackgroundTile(indexMapX * 40, indexMapY * 40, Tile.TILE_SPACE_BACKGROUND);
                     } else if(currentPixel == 0xFFFFFFFF) {
                         //Barrier
-                        tiles[indexMapX + (indexMapY * WORLD_WIDTH)] = new SpaceBackgroundTile(indexMapX * 40, indexMapY * 40, Tile.TILE_SPACE_BARRIER);
+                        tiles[indexMapX + (indexMapY * WORLD_WIDTH)] = new SpaceBarrierTile(indexMapX * 40, indexMapY * 40, Tile.TILE_SPACE_BARRIER);
                     } else if(currentPixel == 0xFFFFD800) {
                         //Player
                         //tiles[indexMapX + (indexMapY * WORLD_WIDTH)] = new SpaceBackgroundTile(indexMapX * 40, indexMapY * 40, Tile.TILE_SPACE_BACKGROUND);
@@ -66,8 +66,18 @@ public class World {
 
     public void renderWorld(Graphics worldGraphics) {
 
-        for(int indexAxisX = 0; indexAxisX < WORLD_WIDTH; indexAxisX++) {
-            for(int indexAxisY = 0; indexAxisY < WORLD_HEIGHT; indexAxisY++) {
+        int cameraStartPositionX = Camera.cameraOffsetX / 40;
+        int cameraStartPositionY = Camera.cameraOffsetY / 40;
+
+        int cameraFinalPositionX = cameraStartPositionX + (Game.WIDTH / 40);
+        int cameraFinalPositionY = cameraStartPositionY + (Game.HEIGHT / 40);
+
+        for(int indexAxisX = cameraStartPositionX; indexAxisX <= cameraFinalPositionX; indexAxisX++) {
+            for(int indexAxisY = cameraStartPositionY; indexAxisY <= cameraFinalPositionY; indexAxisY++) {
+
+                if(indexAxisX < 0 || indexAxisY < 0 || indexAxisX >= WORLD_WIDTH || indexAxisY >= WORLD_WIDTH) {
+                    continue;
+                }
                 Tile tile = tiles[indexAxisX + (indexAxisY * WORLD_WIDTH)];
                 tile.renderTile(worldGraphics);
             }
