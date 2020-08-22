@@ -66,16 +66,16 @@ public class World {
 
     public void renderWorld(Graphics worldGraphics) {
 
-        int cameraStartPositionX = Camera.cameraOffsetX >> 8;
-        int cameraStartPositionY = Camera.cameraOffsetY >> 8;
+        int cameraStartPositionX = Camera.cameraOffsetX / 40;
+        int cameraStartPositionY = Camera.cameraOffsetY / 40;
 
-        int cameraFinalPositionX = cameraStartPositionX + (Game.WIDTH >> 4);
-        int cameraFinalPositionY = cameraStartPositionY + (Game.HEIGHT >> 4);
+        int cameraFinalPositionX = cameraStartPositionX + (Game.WIDTH / 40);
+        int cameraFinalPositionY = cameraStartPositionY + (Game.HEIGHT / 40);
 
         for(int indexAxisX = cameraStartPositionX; indexAxisX <= cameraFinalPositionX; indexAxisX++) {
             for(int indexAxisY = cameraStartPositionY; indexAxisY <= cameraFinalPositionY; indexAxisY++) {
 
-                if(indexAxisX < 0 || indexAxisY < 0 || indexAxisX >= WORLD_WIDTH || indexAxisY >= WORLD_WIDTH) {
+                if(indexAxisX < 0 || indexAxisY < 0 || indexAxisX >= WORLD_WIDTH || indexAxisY >= WORLD_HEIGHT) {
                     continue;
                 }
                 Tile tile = tiles[indexAxisX + (indexAxisY * WORLD_WIDTH)];
